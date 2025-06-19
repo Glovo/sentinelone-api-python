@@ -768,3 +768,61 @@ class Client:
         if incidentStatusesNin is not None:
             payload["incidentStatusesNin"] = incidentStatusesNin
         return self.api_call(requests.get, endpoint, payload)
+
+
+
+
+    ##
+    # Incident Response Actions
+    ##
+
+    def disconnect(self, ids):
+
+        payload = {
+            "data": {},
+            "filter":
+                {'ids': ids},
+        }
+
+        endpoint = '/web/api/v2.1/agents/actions/disconnect'
+        return self.api_call(requests.post, endpoint, payload)
+
+    def connect(self, payload=None):
+
+        payload = {
+            "data": {},
+            "filter":
+                {'ids': ['2239984084461834792']},
+        }
+
+        endpoint = '/web/api/v2.1/agents/actions/connect'
+        return self.api_call(requests.post, endpoint, payload)
+
+    def initiate_scan(self, ids):
+
+        payload = {
+            "data": {},
+            "filter":
+                {'ids': ids},
+        }
+
+        endpoint = '/web/api/v2.1/agents/actions/initiate-scan'
+        return self.api_call(requests.post, endpoint, payload)
+
+
+
+    def abort_scan(self, ids):
+
+        payload = {
+            "data": {},
+            "filter":
+                {'ids': ids},
+        }
+
+        endpoint = '/web/api/v2.1/agents/actions/abort-scan'
+        return self.api_call(requests.post, endpoint, payload)
+
+
+
+
+
