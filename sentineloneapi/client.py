@@ -761,12 +761,16 @@ class Client:
         401 - Unauthorized access - please sign in and retry.
         """
         endpoint = '/web/api/v2.1/threats'
+
         if payload is None:
             payload = {}
+
         if incidentStatuses is not None:
             payload["incidentStatuses"] = incidentStatuses
         if incidentStatusesNin is not None:
             payload["incidentStatusesNin"] = incidentStatusesNin
+
+
         return self.api_call(requests.get, endpoint, payload)
 
 
@@ -809,8 +813,6 @@ class Client:
         endpoint = '/web/api/v2.1/agents/actions/initiate-scan'
         return self.api_call(requests.post, endpoint, payload)
 
-
-
     def abort_scan(self, ids):
 
         payload = {
@@ -821,6 +823,16 @@ class Client:
 
         endpoint = '/web/api/v2.1/agents/actions/abort-scan'
         return self.api_call(requests.post, endpoint, payload)
+
+
+    def GetThreatNotes(self,ids):
+
+        payload = None
+
+        for threatid in ids:
+            endpoint = '/web/api/v2.1/threats/' + str(threatid)+ '/notes'
+            result = self.api_call(requests.get,endpoint,payload)
+            print(result)
 
 
 
