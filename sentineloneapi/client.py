@@ -783,4 +783,21 @@ class Client:
         #Unisolation with AgentID
         agent_id = payload['id']
         endpoint = '/web/api/v2.1/agents/' + agent_id + '/connect'
-        return self.api_call(requests.get, endpoint,payload)
+        return self.api_call(requests.get, endpoint, payload)
+
+
+    def initiate_scan(self,payload=None):
+        #Malware scanning with AgentID
+        #payload = {'ids': ['agent_id']}
+
+        endpoint = '/web/api/v2.1/agents/actions/initiate-scan'
+        return self.api_call(requests.post, endpoint,payload)
+
+
+    def abort_scan(self, payload=None):
+        # Malware scanning with AgentID
+        # payload = {'ids': ['agent_id']}
+
+        endpoint = '/web/api/v2.1/agents/actions/abort-scan'
+        return self.api_call(requests.post, endpoint, payload)
+
