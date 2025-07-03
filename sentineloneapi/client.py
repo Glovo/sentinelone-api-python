@@ -768,3 +768,19 @@ class Client:
         if incidentStatusesNin is not None:
             payload["incidentStatusesNin"] = incidentStatusesNin
         return self.api_call(requests.get, endpoint, payload)
+
+
+
+    def disconnect_agent(self,payload=None):
+        #Isolation with AgentID
+        #payload = {id:[]}
+        agent_id = payload['id']
+        endpoint = '/web/api/v2.1/agents/'+ agent_id +'/disconnect'
+        return self.api_call(requests.get,endpoint,payload)
+
+
+    def reconnect_agent(self,payload=None):
+        #Unisolation with AgentID
+        agent_id = payload['id']
+        endpoint = '/web/api/v2.1/agents/' + agent_id + '/connect'
+        return self.api_call(requests.get, endpoint,payload)
