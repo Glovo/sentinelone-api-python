@@ -773,31 +773,30 @@ class Client:
 
     def disconnect_agent(self,payload=None):
         #Isolation with AgentID
-        #payload = {id:[]}
-        agent_id = payload['id']
+        agent_id = payload['filter']['ids'][0]
         endpoint = '/web/api/v2.1/agents/'+ agent_id +'/disconnect'
         return self.api_call(requests.get,endpoint,payload)
 
 
     def reconnect_agent(self,payload=None):
         #Unisolation with AgentID
-        agent_id = payload['id']
+        agent_id = payload['filter']['ids'][0]
         endpoint = '/web/api/v2.1/agents/' + agent_id + '/connect'
         return self.api_call(requests.get, endpoint, payload)
 
 
     def initiate_scan(self,payload=None):
         #Malware scanning with AgentID
-        #payload = {'ids': ['agent_id']}
-
         endpoint = '/web/api/v2.1/agents/actions/initiate-scan'
         return self.api_call(requests.post, endpoint,payload)
 
 
     def abort_scan(self, payload=None):
         # Malware scanning with AgentID
-        # payload = {'ids': ['agent_id']}
-
         endpoint = '/web/api/v2.1/agents/actions/abort-scan'
         return self.api_call(requests.post, endpoint, payload)
 
+    def mitigate_threat(self,payload=None):
+        # Mitigate Actions
+        endpoint = '/web/api/v2.1/threats/mitigate/quarantine'
+        return self.api_call(requests.post, endpoint, payload)
