@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📚 sentinelone-api-python
+# sentinelone-api-python
 
 **Python client for the SentinelOne Management Console API, for security automation scripts.**
 
@@ -124,7 +124,7 @@ Errors are returned in the `errors` list of the tuple. Exception classes ([`exce
 
 ```text
 sentinelone-api-python/
-├── sentineloneapi/       ⭐ the package
+├── sentineloneapi/       source of truth: the package
 │   ├── __init__.py       exports Client
 │   ├── client.py         Client: auth, pagination, one method per API call
 │   ├── exceptions.py     exception classes
